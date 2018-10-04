@@ -231,4 +231,47 @@ function circ_polar(xc,yc,r)
 	}
 }
 
+/*----------------------------------------------------------*/
+/*-----------------3. TRAZADO INCREMENTAL---------------------*/
+/*----------------------------------------------------------*/
+
+function circ_incremental(xc,yc,r)
+{
+	var x,y,i,xtemp;
+	const dalfa=1/r;
+	const cost = Math.cos(dalfa);
+	const sent = Math.sin(dalfa);
+	const fi = 1;
+	x=0;
+	y=r;
+	while (y>x) 
+	{
+		ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc+y*fi));
+		ctx.putImageData(imgData, Math.round(xc-x), Math.round(yc+y*fi));
+		ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc-y*fi));
+		ctx.putImageData(imgData, Math.round(xc-x), Math.round(yc-y*fi));
+
+		// ctx.putImageData(imgData, Math.round(xc+y), Math.round(yc+y*fi));
+		// ctx.putImageData(imgData, Math.round(xc-y), Math.round(yc+y*fi));
+		// ctx.putImageData(imgData, Math.round(xc+y), Math.round(yc-y*fi));
+		// ctx.putImageData(imgData, Math.round(xc-y), Math.round(yc-y*fi));
+
+		// console.log(Math.round(xc+y),Math.round(yc+y*fi));
+		xtemp = x;
+		x=(x*cost-y*sent);
+		y=(y*cost+xtemp*sent);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
