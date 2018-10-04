@@ -214,3 +214,21 @@ function dibujarCirculoImplicita(xc,yc,r)
 	}
 }
 
+/*----------------------------------------------------------*/
+/*-----------------2. PARAMÉTRICA POLAR---------------------*/
+/*----------------------------------------------------------*/
+
+function circ_polar(xc,yc,r)
+{
+	console.log(xc,yc,r); // esta recibiendo los valores
+	var x,y,i;
+	for (var i = 1; i <=360; i++) {
+		x=xc+r*Math.cos(i/r);
+		y=yc+r*Math.sin(i/r);
+		ctx.putImageData(imgData,x,y);
+		x=x+1;
+		y=y+1;
+	}
+}
+
+
