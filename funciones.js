@@ -241,15 +241,3 @@ function circ_polar(xc,yc,r)
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
