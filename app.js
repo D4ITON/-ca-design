@@ -25,7 +25,10 @@ document.getElementById('btn-submit').onclick = function(){
 	// dibujarLinea(p.xi,p.yi,p.xf,p.yf); // metodo directo
 	// dibujarLineaAddSimple(p.xi,p.yi,p.xf,p.yf); 	//metodo ADD SIMPLE
 	// dibujarLineaADDEntero(p.xi,p.yi,p.xf,p.yf); 	//metodo ADD ENTERO
-	dibujarCirculoImplicita(p.xc,p.yc,p.r); //metodo CIRCULO IMPLICITO
+	// dibujarCirculoImplicita(p.xc,p.yc,p.r); //metodo CIRCULO IMPLICITO
+	// circ_polar(p.xc,p.yc,p.r); //metodo PARAMETRICA POLAR
+	// circ_incremental(p.xc,p.yc,p.r); //metodo TRAZADO INCREMENTAL
+	// circ_segmento(p.xc,p.yc,p.r); //metodo SEGMENTOS DE RECTA
 }
 
 function dibujar() {
