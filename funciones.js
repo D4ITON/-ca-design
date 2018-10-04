@@ -266,6 +266,31 @@ function circ_incremental(xc,yc,r)
 
 
 
+/*----------------------------------------------------------*/
+/*-----------------4. SEGMENTOS DE RECTA---------------------*/
+/*----------------------------------------------------------*/
+
+function circ_segmento(xc,yc,r)
+{
+	var x,y,i;
+	const dos_pi=6.28318;
+	const pi=1;
+	const dalfa=dos_pi/16*r;
+	const cost=Math.cos(dalfa);
+	const sent=Math.sin(dalfa);
+	x=0;
+	y=r;
+	for (var i = 1; i <=16*r; i++) 
+	{
+		xtemp=x;
+		x=(x*cost-y*sent);
+		y=(y*cost+xtemp*sent);
+		ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc+y*pi));
+		console.log(i);
+	}
+}
+
+
 
 
 
