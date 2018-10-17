@@ -29,6 +29,7 @@ document.getElementById('btn-submit').onclick = function(){
 	// circ_polar(p.xc,p.yc,p.r); //metodo PARAMETRICA POLAR
 	// circ_incremental(p.xc,p.yc,p.r); //metodo TRAZADO INCREMENTAL
 	// circ_segmento(p.xc,p.yc,p.r); //metodo SEGMENTOS DE RECTA
+	circulo_bresenham(p.xc,p.yc,p.r); //metodo BRESENHAM
 }
 
 function dibujar() {

@@ -287,13 +287,44 @@ function circ_segmento(xc,yc,r)
 		y=(y*cost+xtemp*sent);
 		ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc+y*pi));
 		console.log(i);
+
 	}
 }
 
+/*----------------------------------------------------------*/
+/*-----------------5. CIRCULO BRESENHAM---------------------*/
+/*----------------------------------------------------------*/
 
+function circulo_bresenham(xc,yc,r)
+{
+	console.log('BRESENHAM');
+	var x = xc;
+	var y = yc-r;
+	var dA = 0;
+	var dB = 0;
+	var s = 0;
+	const rpow2 = Math.pow(r,2);
+	const rsqrt2 = Math.round(r/Math.sqrt(2,2));
 
-
-
+	ctx.putImageData(imgData, x, y);
+	for (var i = 0; i <= rsqrt2; i++) {
+		dA = Math.pow(y-yc,2)+Math.pow(x+1-xc,2)-rpow2;
+		dB = Math.pow(y+1-yc,2)+Math.pow(x+1-xc,2)-rpow2;
+		s = dA + dB;
+		if (s>0) 
+		{
+			ctx.putImageData(imgData,x+1,y+1); //enciende pixel B
+			y=y+1;
+			x=x+1;
+			console.log('b');
+		}
+		else{
+			ctx.putImageData(imgData,x+1,y); //enciende pixel A
+			x=x+1;
+			console.log('a');
+		}
+	}
+}
 
 
 
