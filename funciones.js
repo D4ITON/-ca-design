@@ -273,21 +273,30 @@ function circ_incremental(xc,yc,r)
 function circ_segmento(xc,yc,r)
 {
 	var x,y,i;
-	const dos_pi=6.28318;
+	const dos_pi=2;
 	const pi=1;
 	const dalfa=dos_pi/16*r;
 	const cost=Math.cos(dalfa);
 	const sent=Math.sin(dalfa);
 	x=0;
 	y=r;
-	for (var i = 1; i <=16*r; i++) 
-	{
-		xtemp=x;
-		x=(x*cost-y*sent);
-		y=(y*cost+xtemp*sent);
-		ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc+y*pi));
-		console.log(i);
 
+	if (ctx) {
+		// ctx.lineWidth = 1;
+		ctx.strokeStyle = "#000";
+		ctx.beginPath();
+		ctx.moveTo(xc+x, Math.round(yc+y*pi));
+		for (var i = 1; i <=16*r; i++) 
+		{
+			xtemp=x;
+			x=(x*cost-y*sent);
+			y=(y*cost+xtemp*sent);
+			// ctx.putImageData(imgData, Math.round(xc+x), Math.round(yc+y*pi));
+			ctx.lineTo(Math.round(xc+x), Math.round(yc+y*pi));
+			console.log(i);
+
+		}
+			ctx.stroke();
 	}
 }
 
@@ -299,10 +308,13 @@ function circulo_bresenham(xc,yc,r)
 {
 	console.log('BRESENHAM');
 	var x = xc;
+	var x2 = xc;
 	var y = yc-r;
+	var yi = yc+r;
 	var dA = 0;
 	var dB = 0;
 	var s = 0;
+	var a,b;
 	const rpow2 = Math.pow(r,2);
 	const rsqrt2 = Math.round(r/Math.sqrt(2,2));
 
@@ -313,14 +325,37 @@ function circulo_bresenham(xc,yc,r)
 		s = dA + dB;
 		if (s>0) 
 		{
-			ctx.putImageData(imgData,x+1,y+1); //enciende pixel B
+			a=x+1;
+			b=y+1;
+			ctx.putImageData(imgData,a,b); //enciende pixel B
+			ctx.putImageData(imgData,b,a); //enciende pixel B
+			ctx.putImageData(imgData,a,yi-1);
+			ctx.putImageData(imgData,yi-1,a);
+			ctx.putImageData(imgData,x2-1,b);
+			ctx.putImageData(imgData,b,x2-1);
+			ctx.putImageData(imgData,x2-1,yi-1);
+			ctx.putImageData(imgData,yi-1,x2-1);
+			
 			y=y+1;
+			yi=yi-1;
 			x=x+1;
+			x2=x2-1;
 			console.log('b');
 		}
 		else{
-			ctx.putImageData(imgData,x+1,y); //enciende pixel A
+			a=x+1;
+			b=y;
+			ctx.putImageData(imgData,a,b); //enciende pixel A
+			ctx.putImageData(imgData,b,a); //enciende pixel A
+			ctx.putImageData(imgData,a,yi-1);
+			ctx.putImageData(imgData,yi-1,a);
+			ctx.putImageData(imgData,x2-1,b);
+			ctx.putImageData(imgData,b,x2-1);
+			ctx.putImageData(imgData,x2-1,yi-1);
+			ctx.putImageData(imgData,yi-1,x2-1);
+
 			x=x+1;
+			x2=x2-1;
 			console.log('a');
 		}
 	}
